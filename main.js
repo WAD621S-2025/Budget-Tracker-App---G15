@@ -8,6 +8,7 @@ class BudgetTracker {
 
     this.initEventListeners();
     this.renderTransactions();
+    this.renderChart();
     this.updateBalance();
   }
 
@@ -27,9 +28,20 @@ class BudgetTracker {
   }
 
   clearForm() {
-    document.getElementById("description").value = "";
-    document.getElementById("amount").value = "";
-  }
+  // Reset the type dropdown
+  const typeSelect = document.getElementById("type");
+  typeSelect.value = "";
+
+  // Reset the description dropdown
+  const descriptionSelect = document.getElementById("description");
+  descriptionSelect.innerHTML =
+    '<option value="" disabled selected>Select a category</option>';
+  descriptionSelect.disabled = true;
+
+  // Clear the amount field
+  document.getElementById("amount").value = "";
+}
+
 
   addTransaction() {
     const description = document.getElementById("description").value.trim();
@@ -52,6 +64,7 @@ class BudgetTracker {
     this.saveTransactions();
     this.renderTransactions();
     this.updateBalance();
+    this.renderChart();
     this.clearForm();
   }
 
@@ -93,6 +106,7 @@ class BudgetTracker {
 
     this.saveTransactions();
     this.renderTransactions();
+    this.renderChart();
     this.updateBalance();
   }
 
@@ -102,9 +116,42 @@ class BudgetTracker {
       0
     );
 
-    this.balanceElement.textContent = `Balance: $${balance.toFixed(2)}`;
+    this.balanceElement.textContent = `Balance: N$${balance.toFixed(2)}`;
     this.balanceElement.style.color = balance >= 0 ? "#2ecc71" : "#e74c3c";
   }
-}
 
+  
+   renderChart() {
+    const ctx = document.getElementById("transactions").getContext("2d");
+
+    const totalIncome = this.transactions
+      .filter((t) => t.amount > 0)
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    const totalExpenses = this.transactions
+      .filter((t) => t.amount < 0)
+      .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+
+    const data = {
+      labels: ["Income", "Expenses"],
+      datasets: [
+        {
+          label: "Transactions",
+          data: [totalIncome, totalExpenses],
+          backgroundColor: ["#2ecc71", "#e74c3c"],
+          hoverOffset: 4,
+        },
+      ],
+    };
+
+    if (this.chart) {
+      this.chart.destroy(); // prevent duplicate charts
+    }
+
+    this.chart = new Chart(ctx, {
+      type: "pie",
+      data: data,
+    });
+  }
+}
 const budgetTracker = new BudgetTracker();

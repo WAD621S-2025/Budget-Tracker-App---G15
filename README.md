@@ -41,7 +41,7 @@ If you want to edit the website, open the folder in **Visual Studio Code** or an
 You can make changes to the **HTML**, **CSS**, or **JavaScript** files.  
 Save your edits and refresh your browser to see the updates.  
 
-**Technologies Used**
+**Technologies Used**  
 **HTML**, **CSS**, **JavaScript** -> for creating the website  
 **MySQL**-> for storing data like income and expenses  
 

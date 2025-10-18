@@ -1,60 +1,95 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Budget Tracker Pro</title>
-    <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <div class="app-container">
-      <div class="input-container">
-        <div class="header">
-          <h1>💰 Budget Tracker Pro</h1>
-        </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget Tracker</title>
 
-        <div id="balance">Balance: $0.00</div>
+  <!-- Google Font: Montserrat Classic -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-        <form id="transactionForm">
-          <input
-            type="text"
-            id="description"
-            placeholder="Transaction Description"
-            required
-          />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">BUDGET <span>tRACKER</span></div>
+      <ul class="nav-links">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tracker</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
 
-          <input
-            type="number"
-            id="amount"
-            placeholder="Amount"
-            step="0.01"
-            required
-          />
-
-          <select id="type" required>
-            <option value="income">💸 Income</option>
-            <option value="expense">💳 Expense</option>
-          </select>
-
-          <button type="submit">Add Transaction</button>
-        </form>
-      </div>
-
-      <div class="transactions-container">
-        <h2>Transactions</h2>
-
-        <div id="transactionList">
-          <div class="transaction income">
-            <span>Freelance Work</span>
-            <span class="transaction-amount-container"
-              >$500 <button class="delete-btn">Delete</button></span
-            >
-          </div>
-        </div>
-      </div>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-text">
+      <h4>Transform your financial Journey:</h4>
+      <h1>Take Control of your <br><span>money with Us.</span></h1>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry. Lorem Ipsum has been the industry's standard dummy text ever
+        since the 1500s, when an unknown printer took a galley of type.
+      </p>
+      <button class="btn">Get Started ></button>
     </div>
 
-    <script src="main.js"></script>
-  </body>
+    <div class="hero-image">
+      <img src="firstimage.png" alt="Budget Illustration" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about">
+    <div class="about-text">
+      <h2>About <span>BUDGET tRACKER</span></h2>
+      <p>
+        Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, 
+        when an unknown printer took a galley of type. Lorem Ipsum is simply dummy.
+      </p>
+      <p>
+        Text of the printing and typesetting industry. Lorem Ipsum has been the 
+        industry's standard dummy text ever since the 1500s, when an unknown printer 
+        took a galley of type.
+      </p>
+      <button class="btn">Start Tracking</button>
+    </div>
+
+    <div class="about-image">
+      <img src="secondimage1.png" alt="About Illustration" />
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="team">
+    <div class="team-header">
+      <h2>MEET THE <span>TEAM</span></h2>
+      <p>“Your Finances, Simplified.”</p>
+    </div>
+
+    <div class="team-cards">
+      <div class="card">
+        <img src="profile-placeholder.png" alt="El-Salvador Pashita">
+        <h3>El-Salvador Pashita</h3>
+        <p>Group member</p>
+      </div>
+
+      <div class="card">
+        <img src="profile-placeholder.png" alt="Lydia Kandjengo">
+        <h3>Lydia Kandjengo</h3>
+        <p>Group member</p>
+      </div>
+
+      <div class="card">
+        <img src="profile-placeholder.png" alt="Rosalia Kathindi">
+        <h3>Rosalia Kathindi</h3>
+        <p>Group member</p>
+      </div>
+    </div>
+  </section>
+</body>
 </html>

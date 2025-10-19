@@ -8,15 +8,17 @@
   <!-- Google Font: Montserrat Classic -->
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Font Awesome for icons -->
+  <!-- Font for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Main CSS -->
+  <!-- CSS link -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Navbar -->
+
+  <!-- Navigation bar -->
   <header>
+      <!----------------------------------------------------------------->
     <nav class="navbar">
       <div class="logo">BUDGET <span>BEE</span></div>
       <ul class="nav-links">
@@ -26,14 +28,16 @@
         <li><a href="#team">Team</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
+      
     </nav>
   </header>
-
+<!----------------------------------------------------------------->
   <!-- Hero Section -->
   <section id="home" class="hero section-hidden">
     <div class="hero-text">
       <h4>Transform your financial Journey:</h4>
       <h1>Take Control of your <br><span>money with Us.</span></h1>
+      <!---Button directing to tracker page-->
       <button class="btn" onclick="window.location.href='tracker.html'">Get Started ></button>
 
     </div>
@@ -42,7 +46,7 @@
       <img src="firstimage.png" alt="Budget Illustration" />
     </div>
   </section>
-
+<!----------------------------------------------------------------->
   <!-- About Section -->
   <section id="about" class="about section-hidden">
      <div class="about-image">
@@ -62,19 +66,20 @@
         
         We are passionate about helping people manage their money smarter. Our goal is to make budgeting simple, visual, and stress-free.
       </p>
+      <!--Button directing to Tracker Page-->
       <button class="btn" onclick="window.location.href='tracker.html'">Start tracking ></button>
     </div>
 
    
   </section>
-
+<!----------------------------------------------------------------->
   <!-- Team Section -->
   <section id="team" class="team section-hidden">
     <div class="team-header">
       <h2>MEET THE <span>TEAM</span></h2>
       <p>“Your Finances, Simplified.”</p>
     </div>
-
+<!--Each card with name and picture-->
     <div class="team-cards">
       <div class="card">
         <img src="SalvadorPic.jpg" alt="El-Salvador Pashita">
@@ -95,7 +100,7 @@
       </div>
     </div>
   </section>
-
+<!----------------------------------------------------------------->
   <!-- Contact Section -->
   <section id="contact" class="contact section-hidden">
     <div class="contact-header">
@@ -135,7 +140,7 @@
           </div>
         </div>
       </div>
-
+      <!--User enters name, email and message-->
       <div class="contact-form">
         <form id="contactForm">
           <div class="form-group">
@@ -150,12 +155,13 @@
             <label for="message">Your Message</label>
             <textarea id="message" required></textarea>
           </div>
+          <!--message displayed to user-->
           <button type="submit" class="btn">Send Message</button>
         </form>
       </div>
     </div>
   </section>
-
+<!----------------------------------------------------------------->
   <!-- Footer -->
   <footer class="footer section-hidden">
     <div class="footer-content">
@@ -182,7 +188,7 @@
     </div>
   </footer>
 
-  <!-- Main JavaScript -->
+  <!-- JavaScript link -->
   <script src="Homepage.js"></script>
 </body>
 </html>

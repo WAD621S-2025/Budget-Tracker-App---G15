@@ -7,6 +7,7 @@ class BudgetTracker {
     this.transactionList = document.getElementById("transactionList");
     this.balanceElement = document.getElementById("balance");
 
+  // Initialize event listeners and render existing data
     this.initEventListeners();
     this.renderTransactions();
     this.renderChart();
@@ -16,24 +17,24 @@ class BudgetTracker {
   loadTransactions() {
     return JSON.parse(localStorage.getItem("transactions")) || [];
   }
-
+//saves current transactions
   saveTransactions() {
     localStorage.setItem("transactions", JSON.stringify(this.transactions));
   }
-
+//handles user input
   initEventListeners() {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
       this.addTransaction();
     });
   }
-
+//allows for new inputs
   clearForm() {
-  // Reset the type dropdown
+  // Resets the dropdown
   const typeSelect = document.getElementById("type");
   typeSelect.value = "";
 
-  // Reset the description dropdown
+  // Resets the dropdown
   const descriptionSelect = document.getElementById("description");
   descriptionSelect.innerHTML =
     '<option value="" disabled selected>Select a category</option>';
@@ -43,24 +44,24 @@ class BudgetTracker {
   document.getElementById("amount").value = "";
 }
 
-
+//allows you to add new transactions
   addTransaction() {
     const description = document.getElementById("description").value.trim();
     const amount = parseFloat(document.getElementById("amount").value);
     const type = document.getElementById("type").value;
-
+//validates user input
     if (!description || isNaN(amount)) {
       alert("Please provide a valid description and amount.");
       return;
     }
-
+//creates transaction object
     const transaction = {
       id: Date.now(),
       description,
       amount: type === "expense" ? -amount : amount,
       type,
     };
-
+//adds transaction to list and updates display
     this.transactions.push(transaction);
     this.saveTransactions();
     this.renderTransactions();
@@ -68,15 +69,18 @@ class BudgetTracker {
     this.renderChart();
     this.clearForm();
   }
-
+//renders transactions on page
   renderTransactions() {
+    //to avoid duplicates(clears list first)
     this.transactionList.innerHTML = "";
+    //sorts transactions oldset to newest
     this.transactions
       .slice()
       .sort((a, b) => b.id - a.id)
       .forEach((transaction) => {
         const transactionDiv = document.createElement("div");
         transactionDiv.classList.add("transaction", transaction.type);
+        //display, amount and delete button
         transactionDiv.innerHTML = `
             <span>${transaction.description}</span>
             <span class="transaction-amount-container"
@@ -110,7 +114,7 @@ class BudgetTracker {
     this.renderChart();
     this.updateBalance();
   }
-
+//calculates balance after each transaction
   updateBalance() {
     const balance = this.transactions.reduce(
       (total, transaction) => total + transaction.amount,
@@ -118,13 +122,14 @@ class BudgetTracker {
     );
 
     this.balanceElement.textContent = `Balance: N$${balance.toFixed(2)}`;
+    //if income, green else red
     this.balanceElement.style.color = balance >= 0 ? "#2ecc71" : "#e74c3c";
   }
 
-  
+  //shows chart of income vs expenses
    renderChart() {
-    const ctx = document.getElementById("transactions").getContext("2d");
-
+    const ctx = document.getElementById("myChart").getContext("2d");
+//calculates total income and expenses
     const totalIncome = this.transactions
       .filter((t) => t.amount > 0)
       .reduce((sum, t) => sum + t.amount, 0);
@@ -132,7 +137,7 @@ class BudgetTracker {
     const totalExpenses = this.transactions
       .filter((t) => t.amount < 0)
       .reduce((sum, t) => sum + Math.abs(t.amount), 0);
-
+//chart data
     const data = {
       labels: ["Income", "Expenses"],
       datasets: [
@@ -144,11 +149,11 @@ class BudgetTracker {
         },
       ],
     };
-
+// prevent duplicate charts
     if (this.chart) {
-      this.chart.destroy(); // prevent duplicate charts
+      this.chart.destroy(); 
     }
-
+//create new chart
     this.chart = new Chart(ctx, {
       type: "pie",
       data: data,

@@ -42,6 +42,5 @@ Save your edits and refresh your browser to see the updates.
 
 **Technologies Used**  
 **HTML**, **CSS**, **JavaScript** -> for creating the website  
-**MySQL**-> for storing data like income and expenses  
 
 

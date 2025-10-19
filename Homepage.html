@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Budget Tracker Pro</title>
+  
+  <!-- Google Font: Montserrat Classic -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">BUDGET <span>BEE</span></div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="tracker.html">Tracker</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero section-hidden">
+    <div class="hero-text">
+      <h4>Transform your financial Journey:</h4>
+      <h1>Take Control of your <br><span>money with Us.</span></h1>
+      <button class="btn" onclick="window.location.href='tracker.html'">Get Started ></button>
+
+    </div>
+
+    <div class="hero-image">
+      <img src="firstimage.png" alt="Budget Illustration" />
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about section-hidden">
+     <div class="about-image">
+      <img src="secondimage1.png" alt="About Illustration" />
+    </div>
+    <div class="about-text">
+      <h2>About <span>BUDGET BEE</span></h2>
+      <p>
+        Our app helps you take charge of your finances effortlessly.
+        We provide tools to track spending, set budgets, and reach your savings goals. 
+        Whether you're planning for today or saving for the future, we're here to guide you every step of the way.
+        Join us and make your financial goals a reality.
+
+      </p>
+      <h2>Why choose us?</h2>
+      <p>
+        
+        We are passionate about helping people manage their money smarter. Our goal is to make budgeting simple, visual, and stress-free.
+      </p>
+      <button class="btn" onclick="window.location.href='tracker.html'">Start tracking ></button>
+    </div>
+
+   
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="team section-hidden">
+    <div class="team-header">
+      <h2>MEET THE <span>TEAM</span></h2>
+      <p>“Your Finances, Simplified.”</p>
+    </div>
+
+    <div class="team-cards">
+      <div class="card">
+        <img src="SalvadorPic.jpg" alt="El-Salvador Pashita">
+        <h3>El-Salvador Pashita</h3>
+        <p>Group member</p>
+      </div>
+
+      <div class="card">
+        <img src="LydiaK.JPG" alt="Lydia Kandjengo">
+        <h3>Lydia Kandjengo</h3>
+        <p>Group member</p>
+      </div>
+
+      <div class="card">
+        <img src="ndali.jpg" alt="Rosalia Kathindi">
+        <h3>Rosalia Kathindi</h3>
+        <p>Group member</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact section-hidden">
+    <div class="contact-header">
+      <h2>Contact <span>Us</span></h2>
+      <p>Get in touch with our team</p>
+    </div>
+
+    <div class="contact-container">
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Our Location</h3>
+            <p>Windhoek, Namibia</p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Phone Number</h3>
+            <p>+264 81 740 2112 </p>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-details">
+            <h3>Email Address</h3>
+            <p>info@budgettracker.com</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-form">
+        <form id="contactForm">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message">Your Message</label>
+            <textarea id="message" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer section-hidden">
+    <div class="footer-content">
+      <div class="footer-logo">BUDGET <span>tRACKER</span></div>
+      
+      <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#tracker">Tracker</a>
+        <a href="#team">Team</a>
+        <a href="#contact">Contact</a>
+      </div>
+      
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </div>
+    
+    <div class="copyright">
+      &copy; 2025 Budget Tracker Pro. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Main JavaScript -->
+  <script src="Homepage.js"></script>
+</body>
+</html>

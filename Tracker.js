@@ -1,4 +1,5 @@
-// Budget Tracker Class
+
+
 class BudgetTracker {
   constructor() {
     this.transactions = this.loadTransactions();
@@ -6,92 +7,95 @@ class BudgetTracker {
     this.transactionList = document.getElementById("transactionList");
     this.balanceElement = document.getElementById("balance");
 
+  // Initialize event listeners and render existing data
     this.initEventListeners();
     this.renderTransactions();
+    this.renderChart();
     this.updateBalance();
   }
 
-  // Load transactions from localStorage
   loadTransactions() {
     return JSON.parse(localStorage.getItem("transactions")) || [];
   }
-
-  // Save transactions to localStorage
+//saves current transactions
   saveTransactions() {
     localStorage.setItem("transactions", JSON.stringify(this.transactions));
   }
-
-  // Initialize event listeners for the form
+//handles user input
   initEventListeners() {
     this.form.addEventListener("submit", (e) => {
       e.preventDefault();
       this.addTransaction();
     });
   }
-
-  // Clear form inputs after submission
+//allows for new inputs
   clearForm() {
-    document.getElementById("description").value = "";
-    document.getElementById("amount").value = "";
-  }
+  // Resets the dropdown
+  const typeSelect = document.getElementById("type");
+  typeSelect.value = "";
 
-  // Add a new transaction
+  // Resets the dropdown
+  const descriptionSelect = document.getElementById("description");
+  descriptionSelect.innerHTML =
+    '<option value="" disabled selected>Select a category</option>';
+  descriptionSelect.disabled = true;
+
+  // Clear the amount field
+  document.getElementById("amount").value = "";
+}
+
+//allows you to add new transactions
   addTransaction() {
     const description = document.getElementById("description").value.trim();
     const amount = parseFloat(document.getElementById("amount").value);
     const type = document.getElementById("type").value;
-
-    // Validate inputs
+//validates user input
     if (!description || isNaN(amount)) {
       alert("Please provide a valid description and amount.");
       return;
     }
-
-    // Create transaction object
+//creates transaction object
     const transaction = {
       id: Date.now(),
       description,
       amount: type === "expense" ? -amount : amount,
       type,
     };
-
-    // Add transaction and update UI
+//adds transaction to list and updates display
     this.transactions.push(transaction);
     this.saveTransactions();
     this.renderTransactions();
     this.updateBalance();
+    this.renderChart();
     this.clearForm();
   }
-
-  // Render all transactions in the list
+//renders transactions on page
   renderTransactions() {
+    //to avoid duplicates(clears list first)
     this.transactionList.innerHTML = "";
-    
-    // Sort transactions by ID (newest first) and render each one
+    //sorts transactions oldset to newest
     this.transactions
       .slice()
       .sort((a, b) => b.id - a.id)
       .forEach((transaction) => {
         const transactionDiv = document.createElement("div");
         transactionDiv.classList.add("transaction", transaction.type);
+        //display, amount and delete button
         transactionDiv.innerHTML = `
             <span>${transaction.description}</span>
             <span class="transaction-amount-container"
               >$${Math.abs(transaction.amount).toFixed(
                 2
               )} <button class="delete-btn" data-id="${
-              transaction.id
-            }">Delete</button></span
+          transaction.id
+        }">Delete</button></span
             >
         `;
         this.transactionList.appendChild(transactionDiv);
       });
-    
-    // Reattach delete event listeners
     this.attachDeleteEventListeners();
   }
 
-  // Attach event listeners to delete buttons
   attachDeleteEventListeners() {
     this.transactionList.querySelectorAll(".delete-btn").forEach((button) => {
       button.addEventListener("click", () => {
@@ -100,34 +104,61 @@ class BudgetTracker {
     });
   }
 
-  // Delete a transaction by ID
   deleteTransaction(id) {
     this.transactions = this.transactions.filter(
       (transaction) => transaction.id !== id
     );
 
-    // Update storage and UI
     this.saveTransactions();
     this.renderTransactions();
+    this.renderChart();
     this.updateBalance();
   }
-
-  // Update the balance display
+//calculates balance after each transaction
   updateBalance() {
-    // Calculate total balance
     const balance = this.transactions.reduce(
       (total, transaction) => total + transaction.amount,
       0
     );
 
-    // Update balance text and color
     this.balanceElement.textContent = `Balance: N$${balance.toFixed(2)}`;
+    //if income, green else red
     this.balanceElement.style.color = balance >= 0 ? "#2ecc71" : "#e74c3c";
-}
-}
+  }
 
-// Initialize the application when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
-  // Initialize Budget Tracker
-  const budgetTracker = new BudgetTracker();
-});
+  //shows chart of income vs expenses
+   renderChart() {
+    const ctx = document.getElementById("myChart").getContext("2d");
+//calculates total income and expenses
+    const totalIncome = this.transactions
+      .filter((t) => t.amount > 0)
+      .reduce((sum, t) => sum + t.amount, 0);
+
+    const totalExpenses = this.transactions
+      .filter((t) => t.amount < 0)
+      .reduce((sum, t) => sum + Math.abs(t.amount), 0);
+//chart data
+    const data = {
+      labels: ["Income", "Expenses"],
+      datasets: [
+        {
+          label: "Transactions",
+          data: [totalIncome, totalExpenses],
+          backgroundColor: ["#2ecc71", "#e74c3c"],
+          hoverOffset: 4,
+        },
+      ],
+    };
+// prevent duplicate charts
+    if (this.chart) {
+      this.chart.destroy(); 
+    }
+//create new chart
+    this.chart = new Chart(ctx, {
+      type: "pie",
+      data: data,
+    });
+  }
+}
+const budgetTracker = new BudgetTracker();
+

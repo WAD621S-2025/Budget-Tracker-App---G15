@@ -820,6 +820,14 @@ button:hover {
   transform: translateY(0);
 }
 
+
+
+#transactions {
+  width: 100%;
+  height: 300px;
+}
+
+/*responsiveness*/
 @media (max-width: 768px) {
   .app-container {
     flex-direction: column;
@@ -830,3 +838,21 @@ button:hover {
     font-size: 2rem;
   }
 }
+/*chart*/
+.chart {
+  max-width: 400px;
+  margin: 30px auto;
+}
+
+.chart-container {
+  width: 100%;         
+  max-width: 500px;   
+  height: 300px;       
+  margin: 0 auto;      
+}
+/*container height*/
+#myChart {
+  width: 100%;         
+  height: 100%;        
+}
+

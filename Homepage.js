@@ -1,6 +1,5 @@
-// Homepage.js
-  
-  // Navbar scroll effect - adds glassmorphism when scrolling
+
+  // Navigation bar scroll(glassy look)
   const navbar = document.querySelector('.navbar');
   window.addEventListener('scroll', function() {
     if (window.scrollY > 50) {
@@ -10,7 +9,7 @@
     }
   });
 
-  // Section reveal animation using Intersection Observer
+  // animation for sections
   const sections = document.querySelectorAll('.section-hidden');
   
   const revealSection = function(entries, observer) {

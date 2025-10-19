@@ -11,10 +11,9 @@ Budget Planning
 Responsive Design  
 
 **Challenges**  
-setting budgets for certain time periods  
-users engaging   
-accuracy of the data   
-technical limitations    
+setting budgets for certain time periods     
+uploading to github   
+technical limitations(working with php)    
 
 **How to Use the Budget Tracker Website**  
 
